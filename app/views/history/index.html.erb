@@ -1,0 +1,83 @@
+<div id="wrapper">
+<div id="container">
+  <div id="content_history">
+    <div class="c_align">
+      <h2>Ringi System History</h2>
+    </div>
+    
+    <%= form_tag( "/tools/history", method: "get" ) do %>
+    <div class="c_align">
+      <table class="center tbl_common">
+	<tr>
+	  <td>
+	    <span>Sort by: </span>
+	    <select name="sort">
+	      <option value="logtime">Log Time</option>
+	      <option value="site">EC Site</option>
+	      <option value="price">Price</option>
+	      <option value="qty">Qty</option>
+	      <option value="total">Total</option>
+	    </select>
+	  </td>
+	  <td>
+	    <span>EC Site: </span>
+	    <select name="filter_site">
+	      <option value="0">Monotaro</option>
+	    </select>
+	  </td>
+	  <td>
+	    <span>User Type: </span>
+	    <select name="filter_user">
+	      <option value="0">一般</option>
+	      <option value="1">登録者</option>
+	    </select>
+	  </td>
+	</tr>
+      </table><br>
+    </div>
+    <% end %>
+
+    <table class="tbl_common center" border="1">
+      <tr><th colspan="2" class="c_align">SUMMARY</th></tr>
+      <tr>
+	<td>Log Count: </td>
+	<td><%= @history.count %></td>
+      </tr>
+      <tr>
+	<td>Total Purchase: </td>
+	<td><%= number_with_delimiter(@total_purchase, :delimiter => ',') %> 円</td>
+      </tr>
+    </table><br>
+
+    <table class="tbl_common center" border="0">
+      <tr>
+	<th>#</th>
+	<th>Log Time</th>
+	<th>EC Site</th>
+	<th>URL</th>
+	<th>User</th>
+	<th>Price</th>
+	<th>Qty Info</th>
+	<th>Qty</th>
+	<th>TOTAL</th>
+      </tr>
+      <% @history.each_with_index do | item, i | %>
+      <tr>
+	<td><%= i+1 %></td>
+	<td><%= item[:create_time] %></td>
+	<td><%= item[:affiliate_name] %></td>
+	<td><a href="<%= item[:url] %>" target="blank">Product Link</a></td>
+	<td><% if item[:user_id] == 0 %> 一般 <% else %> 登録者 <% end %></td>
+	<td><%= number_with_delimiter(item[:price], :delimiter => ',') %> 円</td>
+	<td><%= item[:qty_info] %></td>
+	<td><%= item[:qty] %></td>
+	<td><%= number_with_delimiter(item[:price_total], :delimiter => ',') %> 円</td>
+      </tr>
+      <% end %>
+    </table>
+  </div> <!-- content_affiliate -->
+</div> <!-- container -->
+</div> <!-- wrapper -->
+
+<script type="text/javascript">
+</script>

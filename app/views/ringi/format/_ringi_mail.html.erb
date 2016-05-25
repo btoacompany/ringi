@@ -1,0 +1,28 @@
+<textarea rows="30" cols="70">
+◯◯さん
+お疲れさまです。◯◯です。
+以下のとおり物品購入を申請いたします。
+決裁のほどよろしくお願いいたします。
+
+========================================
+
+購入品目：<%= params[:title] %>
+
+購入目的：<%= params[:purpose] %>
+
+購入元：<%= params[:site_name] %>
+(URL：<%= params[:url] %>)
+<% if params[:maker].present? %>
+
+メーカー名： <%= params[:maker] %>
+<% end %>
+
+購入金額：<%= number_with_delimiter(params[:price], :delimiter => ',')  %> 円（税込）/ <%= params[:qty_info] %>
+購入数量：<%= params[:qty] %>
+合計：<%= number_with_delimiter(params[:price_total], :delimiter => ',') %> 円（税込）
+
+<% if params[:notes].present? %>備考：<%= params[:notes] %><% end %>
+========================================
+
+以上、よろしくお願いいたします。
+</textarea>

@@ -1,0 +1,46 @@
+<div id="wrapper">
+<div id="container">
+  <div id="content_ringi">
+    <div class="c_align">
+      <h3>稟議書システム</h3><hr><br>
+      <%= form_tag( "/ringi/info", method: "post", id: "ringi_form" ) do %>
+	<table class="center">
+	  <tr>
+	    <th>ECサイト選択</th>
+	    <th>URL</th>
+	  </tr>
+	  <tr class="l_align">
+	    <td>
+	      <select name="site_id" class="sites">
+		<% @sites.each do | site | %>
+		  <option value="<%= site[:id] %>" data-url="<%= site[:link] %>"><%= site[:name] %></option>
+		<% end %>
+	      </select>
+	    </td>
+	    <td>
+	      <input type="url" name="url" class="url-input" value="" size="40" placeholder="Type in site url here"/>
+	    </td>
+	    <td> <input type="submit" class="btn_submit" value="Submit" /> </td>
+	  </tr>
+	</table>
+      <% end %>
+    </div><br>
+
+  </div> <!-- content -->
+</div> <!-- container -->
+</div> <!-- wrapper -->
+
+<script>
+$("#ringi_form").submit(function() {
+  var siteId  = $(".sites option:selected").val();
+  var siteUrl = $(".sites option:selected").attr("data-url");
+  var urlInput = $(".url-input").val();
+
+  siteUrl = siteUrl.replace(/^https?\:\/\//i, "");
+
+  if(!(urlInput.indexOf(siteUrl) > -1)){
+    alert("選択したサイトと入力したURLが一致しているか確かめてください。");
+    return false;
+  }
+});
+</script>

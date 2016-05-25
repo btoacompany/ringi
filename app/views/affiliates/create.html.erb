@@ -1,0 +1,48 @@
+<div id="wrapper">
+<div id="contents">
+  <h3 class="c_align">Create New Affiliate</h3>
+  <%= form_tag( "/tools/affiliates/create/complete", method: "post" ) do %>
+  <table class="center">
+    <tr>
+      <td>EC Site Name: </td>
+      <td><input type="text" value="" name="name" /></td>
+    </tr>
+    <tr>
+      <td>Link: </td>
+      <td><input type="url" value="" name="link" width="200"/></td>
+    </tr>
+    <tr>
+      <td>Instructions: </td>
+      <td><textarea name="instructions" cols="30" rows="2" /></textarea></td>
+    </tr>
+    <tr>
+      <td>Price Tax: </td>
+      <td>
+	<label><input type="radio" value="0" name="price_tax" width="200"/>税抜き</label>
+	<label><input type="radio" value="1" name="price_tax" width="200" checked />税込</label>
+      </td>
+    </tr>
+    <tr>
+      <td>Price Discount Tax: </td>
+      <td>
+	<label><input type="radio" value="0" name="price_discount_tax" width="200"/>税抜き</label>
+	<label><input type="radio" value="1" name="price_discount_tax" width="200"
+	checked/>税込</label>
+      </td>
+    </tr>
+    <tr>
+      <td>Status: </td>
+      <td>
+	<label><input type="radio" name="status" value="0" checked />Incomplete</label>
+	<label><input type="radio" name="status" value="1" />Complete</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="btn r_align" colspan="2">
+	<input type="submit" value="Submit" class="btn" />
+      </td>
+    </tr>	
+  </table>
+  <% end %>
+</div> <!-- contents -->
+</div> <!-- wrapper -->

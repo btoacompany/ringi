@@ -1,0 +1,18 @@
+CREATE TABLE users (
+  id INT AUTO_INCREMENT NOT NULL,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  firstname VARCHAR(255) NOT NULL,
+  lastname VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  gender TINYINT(2) NOT NULL DEFAULT 0,
+  organization VARCHAR(255),
+  department VARCHAR(255),
+  user_group INT NOT NULL DEFAULT 0,
+  user_type TINYINT(2) NOT NULL DEFAULT 0,
+  salt VARCHAR(255) NOT NULL,
+  create_time DATETIME NOT NULL,
+  update_time DATETIME NOT NULL,
+  delete_flag TINYINT(2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (id)
+);

@@ -1,0 +1,75 @@
+<div id="wrapper">
+<div id="contents">
+  <h3 class="c_align">
+    情報確認<br>
+    <% if @site[:instructions].present? %> 
+      <span class="notice">(NOTE: <%= @site[:instructions] %>)</span>
+    <% end %>
+  </h3>
+
+  <%= form_tag( "/ringi/email", method: "post" ) do %>
+  <input type="hidden" name="url" value="<%= @url %>" />
+  <input type="hidden" name="site_id" value="<%= @site[:id] %>" />
+  <input type="hidden" name="qty_info" value="<%= @infos[:qty] %>" />
+
+  <table class="center">
+    <tr>
+      <td>購入元: </td>
+      <td>
+	<%= @site[:name] %>
+	<input type="hidden" name="site_name" value="<%= @site[:name] %>" />
+      </td>
+    </tr>
+    <tr>
+      <td>URL: </td>
+      <td><a href="<%= @url %>" target="blank"><%= @url %></a></td>
+    </tr>
+    <tr><td colspan="2"><hr></td></tr>
+    <tr>
+      <td>商品名: </td>
+      <td><input type="text" value="<%= @infos[:title] %>" name="title" size="40" required /></td>
+    </tr>
+    <tr>
+      <td>メーカー名: </td>
+      <td><input type="text" value="<%= @infos[:maker] %>" name="maker" size="40"/></td>
+    </tr>
+    <tr>
+      <td>商品コード: </td>
+      <td><input type="text" value="<%= @infos[:sku_id] %>" name="sku_id" size="15"/></td>
+    </tr>
+    <tr>
+      <td>価格: </td>
+      <td>
+	<input type="text" value="<% if @infos[:price].present? %> <%= number_with_delimiter(@infos[:price], :delimiter => ',') %> <% else %> 0 <% end %>" name="price" size="15" required /> 円 / <%= @infos[:qty] %>
+      </td>
+    </tr>
+    <tr>
+      <td>割引価格: </td>
+      <td>
+	<input type="text" value="<% if @infos[:price_discount].present? %> <%=
+	number_with_delimiter(@infos[:price_discount], :delimiter => ',') %> <% else %> 0 <% end %>"
+	name="price_discount" size="15" required /> 円 / <%= @infos[:qty] %> 
+      </td>
+    </tr>
+    <tr>
+      <td>内容量: </td>
+      <td><input type="number" value="1" name="qty" style="width:50px" required /></td>
+    </tr>
+    <tr><td colspan="2"><hr></td></tr>
+    <tr>
+      <td>購入目的: </td>
+      <td><textarea name="purpose" rows="4" cols="30" required></textarea></td>
+    </tr>
+    <tr>
+      <td>備考: </td>
+      <td><textarea name="notes" rows="4" cols="30"></textarea></td>
+    </tr>
+    <tr>
+      <td class="btn c_align" colspan="2">
+	<br><input type="submit" value="稟議書作成" class="btn" />
+      </td>
+    </tr>	
+  </table><br>
+  <% end %>
+</div> <!-- contents -->
+</div> <!-- wrapper -->

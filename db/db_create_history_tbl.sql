@@ -1,0 +1,21 @@
+CREATE TABLE history (
+  id INT AUTO_INCREMENT NOT NULL,
+  user_id INT NOT NULL DEFAULT 0,
+  user_type TINYINT(2) NOT NULL DEFAULT 0,
+  url VARCHAR(255) NOT NULL,
+  affiliate_id INT NOT NULL,
+  affiliate_name VARCHAR(255) NOT NULL,
+  price INT NOT NULL DEFAULT 0,
+  price_total INT NOT NULL DEFAULT 0,
+  qty INT NOT NULL DEFAULT 0,
+  qty_info VARCHAR(255),
+  title VARCHAR(255),
+  sku_id VARCHAR(255),
+  notes TEXT,
+  purpose TEXT,
+  status TINYINT(2) NOT NULL DEFAULT 0,
+  create_time DATETIME NOT NULL,
+  update_time DATETIME NOT NULL,
+  delete_flag TINYINT(2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (id)
+);

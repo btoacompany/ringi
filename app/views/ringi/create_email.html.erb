@@ -1,0 +1,21 @@
+<div id="wrapper">
+<div id="contents">
+  <h3 class="c_align">
+    稟議書作成<br>
+    <span class="notice">(◯◯の部分入力してください。)</span>
+  </h3>
+
+  <%= form_tag( "/ringi/complete", method: "post" ) do %>
+  <table class="center">
+    <tr>
+      <td><%= render "ringi/format/ringi_mail" %></td>
+    </tr>
+    <tr>
+      <td class="btn c_align" colspan="2">
+	<input type="submit" value="トップページへ戻る" class="btn" style="width:200px" />
+      </td>
+    </tr>	
+  </table><br>
+  <% end %>
+</div> <!-- contents -->
+</div> <!-- wrapper -->

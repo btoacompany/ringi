@@ -1,0 +1,54 @@
+<div id="wrapper">
+<div id="contents">
+  <h3 class="c_align">Update Affiliate Info</h3>
+  <%= form_tag( "/tools/affiliates/edit/complete", method: "post" ) do %>
+  <input type="hidden" name="id" value="<%= params[:id] %>" />
+  <table class="center">
+    <tr>
+      <td>EC Site Name: </td>
+      <td><input type="text" value="<%= @sites.name %>" name="name" /></td>
+    </tr>
+    <tr>
+      <td>Link: </td>
+      <td><input type="url" value="<%= @sites.link %>" name="link" width="200"/></td>
+    </tr>
+    <tr>
+      <td>Instructions: </td>
+      <td><textarea name="instructions" cols="30" rows="2" /><%= @sites.instructions %></textarea></td>
+    </tr>
+    <tr>
+      <td>Price Tax: </td>
+      <td>
+	<label><input type="radio" value="0" name="price_tax" <% if @sites.price_tax == 0 %> checked
+	<% end %>/>税抜き</label>
+	<label><input type="radio" value="1" name="price_tax" <% if @sites.price_tax == 1 %> checked
+	<% end %>/>税込</label>
+      </td>
+    </tr>
+    <tr>
+      <td>Price Discount Tax: </td>
+      <td>
+	<label><input type="radio" value="0" name="price_discount_tax" <% if
+	@sites.price_discount_tax == 0 %> checked <% end %>/>税抜き</label>
+	<label><input type="radio" value="1" name="price_discount_tax" <% if
+	@sites.price_discount_tax == 1 %> checked <% end %>/>税込</label>
+      </td>
+    </tr>
+    <tr>
+      <td>Status: </td>
+      <td>
+	<label><input type="radio" name="status" value="0" <% if @sites.status == 0 %> checked 
+	<% end %>/>Incomplete</label>
+	<label><input type="radio" name="status" value="1" <% if @sites.status == 1 %> checked 
+	<% end %> />Complete</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="btn r_align" colspan="2">
+	<input type="submit" value="Update" class="btn"/>
+      </td>
+    </tr>	
+  </table>
+  <% end %>
+</div> <!-- contents -->
+</div> <!-- wrapper -->
