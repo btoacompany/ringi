@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   post	'/user/edit/complete'	=> 'users#edit_complete'
 
   #login tools
-  get	'/tools'		  => 'admins#index'
+  get	'/tools'		  => 'affiliates#index'
   get	'/tools/login'		  => 'admins#login'
   post	'/tools/login/complete'	  => 'admins#login_complete'
-  get	'/tools/logout'		  => 'admins#logout_complete'
+  get	'/tools/logout'		  => 'admins#logout'
 
   #admin registration for tools
   get	'/tools/register'		  => 'admins#create'

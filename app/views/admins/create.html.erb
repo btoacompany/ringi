@@ -1,0 +1,59 @@
+<div id="wrapper">
+<div id="contents">
+  <h3 class="c_align">Create Admin User</h3>
+  <%= form_tag( "/tools/register/complete", method: "post", id: "login_form" ) do %>
+  <div class="center">
+    <table class="center">
+      <tr>
+	<td>Username: </td>
+	<td><input type="text" name="username" value="" required /></td>
+      </tr>
+      <tr>
+	<td>First Name: </td>
+	<td><input type="text" name="firstname" value="" required /></td>
+      </tr>
+      <tr>
+	<td>Last Name: </td>
+	<td><input type="text" name="lastname" value="" required /></td>
+      </tr>
+      <tr><td colspan="2"><hr></td></tr>
+      <tr>
+	<td>E-mail: </td>
+	<td><input type="email" name="email" value="" required /></td>
+      </tr>
+      <tr>
+	<td>Password: </td>
+	<td><input type="password" name="password" id="passwd1" value="" required /></td>
+      </tr>
+      <tr>
+	<td>Confirm Password: </td>
+	<td>
+	  <input type="password" name="password" id="passwd2" value="" required /><br> 
+	  <span class="notice"></span>
+	</td>
+      </tr>
+      <tr>
+	<td class="btn r_align" colspan="2">
+	  <br><input type="submit" value="Submit" class="btn" />
+	</td>
+      </tr>
+    </table>
+  </div><br><br>
+  <% end %>
+</div> <!-- contents -->
+</div> <!-- wrapper -->
+
+<script type="text/javascript">
+var passwd1 = document.getElementById("passwd1");
+var passwd2 = document.getElementById("passwd2");
+
+function validatePassword(){
+  if(passwd1.value != passwd2.value) {
+    $(".notice").text(" Passwords don't match");
+  } else {
+    $(".notice").text("");
+  }
+}
+passwd1.onchange = validatePassword;
+passwd2.onkeyup = validatePassword;
+</script>
