@@ -1,24 +1,31 @@
 #coding:utf-8
 
 class AdminsController < ApplicationController
+  before_filter :authenticate_admin, :except => [:login, :login_complete, :logout]
+
   def login
+    if session[:admin_id]
+      redirect_to "/tools/history"
+    end
   end
 
   def login_complete
-    authorized_user = Admins.authenticate(params[:username],params[:password])
-    if authorized_user
-      session[:user_id] = authorized_user.id
-      flash[:notice] = "Welcome again, you logged in as #{authorized_user.username}"
-      redirect_to '/tools/affiliates'
+    authorized_admin = Admins.authenticate(params[:username],params[:password])
+    reset_session
+    if authorized_admin
+      session[:admin_id] = authorized_admin.id
+      flash[:notice] = "" 
+      redirect_to "/tools/history"
     else
       flash[:notice] = "Invalid Username or Password"
       flash[:color]= "invalid"
-      render "/tools/login"	
+      render "login"
     end
   end
 
   def logout
-    session[:user_id] = nil
+    session[:admin_id] = nil
+    reset_session
     redirect_to '/tools/login'
   end
 
@@ -26,6 +33,10 @@ class AdminsController < ApplicationController
   end
 
   def create
+    #do nothing
+    if (@current_user.admin_type == 0)
+      redirect_to '/tools'
+    end
   end
 
   def create_complete
@@ -41,6 +52,6 @@ class AdminsController < ApplicationController
   end
 
   def redirect_to_index
-    redirect_to "/tools/register" 
+    redirect_to "/tools" 
   end
 end

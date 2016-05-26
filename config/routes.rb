@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   post	'/user/edit/confirm'	=> 'users#edit_confirm'
   post	'/user/edit/complete'	=> 'users#edit_complete'
 
-  #login tools
-  get	'/tools'		  => 'affiliates#index'
+  #admin tools login 
+  get	'/tools'		  => 'history#index'
   get	'/tools/login'		  => 'admins#login'
   post	'/tools/login/complete'	  => 'admins#login_complete'
   get	'/tools/logout'		  => 'admins#logout'
@@ -38,7 +38,6 @@ Rails.application.routes.draw do
   #users and history tool
   get	'/tools/history'	    => 'history#index'
   get	'/tools/users/:id/history'  => 'users#history'
-
   get	'/tools/users'		    => 'users#index'
   get	'/tools/admins'		    => 'admins#index'
 

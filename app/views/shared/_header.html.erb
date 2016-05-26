@@ -1,11 +1,23 @@
 <div id="header">
-  <p class="login_name"> Welcome, <%= current_user.firstname -%>! </p>
+  <p class="login_name">
+    Welcome, <%= current_user.firstname -%>!
+  </p>
   <table id="nav">
     <tr>
       <td>
 	<div class="menu_panel">
 	  <ul class="main_menu">
 	    <li><a href="/ringi">BtoA 稟議</a></li>
+	    <% if session[:admin_id] %>
+	      <% if @current_user %>
+		<% if @current_user.admin_type == 1 %>
+		  <li><a href="/tools/register">Register</a></li>
+		<% end %>
+	      <% end %>
+	      <li><a href="/tools/history">History</a></li>
+	      <li><a href="/tools/affiliates">Affiliate</a></li>
+	      <li><a href="/tools/logout">Logout</a></li>
+	    <% end %>
 	  </ul>
 	</div>
       </td>

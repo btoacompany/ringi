@@ -1,7 +1,7 @@
 #coding:utf-8
 
 class AffiliatesController < ApplicationController
-  before_filter :init
+  before_filter :authenticate_admin, :init
 
   def init
   end

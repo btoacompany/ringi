@@ -25,11 +25,6 @@ class Admins < ActiveRecord::Base
     self.save
   end
 
-  def match_password(login_password="")
-    password == BCrypt::Engine.hash_secret(login_password, salt)
-  end
-
-private
   def set_create_time 
     t = set_time
     self.create_time = t
@@ -56,11 +51,17 @@ private
     @password = nil
   end
 
-  def self.authenticate(username="", login_password="")
-    user = Admins.find_by_username(username)
 
-    if user && user.match_password(login_password)
-      return user
+  def match_password(login_password="")
+    password == BCrypt::Engine.hash_secret(login_password, salt)
+  end
+
+private
+  def self.authenticate(username="", login_password="")
+    admin = Admins.find_by_username(username)
+
+    if admin && admin.match_password(login_password)
+      return admin 
     else
       return false
     end

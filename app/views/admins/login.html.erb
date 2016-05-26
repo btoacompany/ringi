@@ -1,6 +1,7 @@
 <div id="wrapper">
 <div id="contents">
   <br><br>
+  <% if flash[:notice] %><p class="c_align notice"><%= flash[:notice] %></p><% end %>
   <%= form_tag( "/tools/login/complete", method: "post", id: "login_form" ) do %>
   <div id="login_box" class="center">
     <h3 class="c_align">Admin Login</h3>
