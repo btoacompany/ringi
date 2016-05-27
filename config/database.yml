@@ -13,13 +13,15 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
-  password:
+  username: btoa 
+  password: qwerty123
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: ringi
+  host: db01-freeup-dev.ct0nzvketmkg.ap-northeast-1.rds.amazonaws.com 
+  port: 3306
+  database: freeup_dev 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
