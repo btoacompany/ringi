@@ -51,6 +51,8 @@ test:
 #
 production:
   <<: *default
-  database: ringi_production
-  username: ringi
-  password: <%= ENV['RINGI_DATABASE_PASSWORD'] %>
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  post: <%= ENV['RDS_PORT'] %>
