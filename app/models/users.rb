@@ -1,3 +1,4 @@
+=begin
 class Users < ActiveRecord::Base
   self.table_name = "users"
 
@@ -37,3 +38,4 @@ class Users < ActiveRecord::Base
     return Time.now.strftime("%Y-%m-%d %H:%M:%S")
   end
 end
+=end
