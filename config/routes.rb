@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  #root 'ringi#index'
-  root 'test#index'
+  root 'ringi#index'
 
   #login users
   get	'/login'		  => 'users#login'
