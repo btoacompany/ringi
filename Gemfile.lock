@@ -161,7 +161,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  mysql2 (~> 0.3.18)
+  mysql2
   puma
   rails (= 4.2.4)
   rails_12factor
