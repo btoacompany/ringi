@@ -46,3 +46,4 @@ end
 
 #custom gems
 gem 'jquery-turbolinks'
+gem 'cowsay'
