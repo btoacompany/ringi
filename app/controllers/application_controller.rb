@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
         if: Proc.new { |c| c.request.format =~ %r{application/json} }
   helper_method :current_user
 
+  Rails::logger.debug "-----hello world!-----"
   def current_user
     @current_user||= Admins.find(session[:admin_id]) if session[:admin_id]
     @current_user||= Users.find(session[:user_id]) if session[:user_id]
