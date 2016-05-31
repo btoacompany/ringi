@@ -1,7 +1,7 @@
 #coding:utf-8
 
 class AdminsController < ApplicationController
-  before_filter :authenticate_admin, :except => [:login, :login_complete, :logout]
+  before_filter :authenticate_admin#, :except => [:login, :login_complete, :logout]
 
   def login
     if session[:admin_id]
@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
   def create
     #do nothing
     if (@current_user.admin_type == 0)
-      redirect_to '/tools'
+      #redirect_to '/tools'
     end
   end
 
