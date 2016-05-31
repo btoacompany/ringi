@@ -12,7 +12,7 @@ class RingiController < ApplicationController
     @site_id = params[:site_id].to_i
     @site = Affiliates.find(@site_id)
     @url = CGI.unescape(params[:url])
-    @infos = get_site_info(@site_id, params[:url]) 
+    @infos = get_site_info(@site[:name], params[:url]) 
   end
 
   def create_email

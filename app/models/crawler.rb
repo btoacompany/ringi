@@ -33,17 +33,17 @@ module Crawler
     str.scan(/\d/).join('')
   end
 
-  def get_site_info(site_id, url)
+  def get_site_info(site_name, url)
     url = URI.escape(url)
     @xpaths = {}
     @infos = {}
 
-    case site_id
-    when 1 #monotaro
+    case site_name
+    when 'Monotaro'
       parse_monotaro(url)
-    when 2 #askul
+    when 'Askul' 
       parse_askul(url)
-    when 3 #lohaco
+    when 'Lohaco' 
       parse_lohaco(url)
     end
   end
