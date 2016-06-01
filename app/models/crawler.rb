@@ -11,7 +11,14 @@ module Crawler
 	elements.each do | elem |
 	  if elem.present?
 	    if doc.xpath(elem).present?
-	      @infos[key] = doc.xpath(elem).first.inner_text.strip
+	      info = doc.xpath(elem)
+
+	      if info.is_a? String
+		@infos[key] = info.strip
+	      else
+		@infos[key] = info.first.inner_text.strip
+	      end
+
 	      break
 	    end
 	  else
@@ -67,9 +74,9 @@ private
     @xpaths = {
       :title	    => ["//h1[@itemprop='name']"],
       :sku_id	    => ["//span[@itemprop='mpn']"],
-      :maker	    => ["//div[@class='Maker_label']//li[2]/a"],
-      :price	    => ["//table[@class='price_Table']//tr[2]/td"],
-      :qty	    => ["//div[@class='Other_Info']//li[3]/span/text()"],
+      :maker	    => ["//div/ul/li[@itemprop='brand']/a"],
+      :price	    => ["//p[@class='priceNum']/span[2]"],
+      :qty	    => ["substring-after(//p[@class='unitTxt'],'：')"],
       :price_discount => [""]
     }
 
@@ -83,7 +90,7 @@ private
       :price	    => ["//div[@class='price']//span[@class='sellPrice']"],
       :qty	    => ["//div[@class='cp-product_itemInfoSalesUnit']//span[@class='salesUnit']/span"],
       :sku_id	    => [""],
-      :maker	    => [""],
+      :maker	    => ["//div[@class='cp-product_detailSpec']//tr[th/text()='メーカー名']/td"],
       :price_discount => [""]
     }
 
