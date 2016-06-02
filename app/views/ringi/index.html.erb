@@ -2,7 +2,10 @@
 <div id="container">
   <div id="content_ringi">
     <div class="c_align">
-      <h3>稟議書システム</h3><hr><br>
+      <h3>稟議書システム</h3>
+      <span>FreeUpは自動で稟議書を作成するサービスです。<br>
+      ECサイトを選んでURLを貼るだけで必要な情報が取りこむことができます。</span>
+      <hr><br>
       <%= form_tag( "/ringi/info", method: "post", id: "ringi_form" ) do %>
 	<table class="center">
 	  <tr>
@@ -31,6 +34,12 @@
 </div> <!-- wrapper -->
 
 <script>
+var alerted = localStorage.getItem('alerted') || '';
+if (alerted != 'yes') {
+  alert("FreeUpは自動で稟議書を作成するサービスです。ECサイトを選んでURLを貼るだけで必要な情報が取りこむことができます。");
+  localStorage.setItem('alerted', 'yes');
+}
+
 $("#ringi_form").submit(function() {
   var siteId  = $(".sites option:selected").val();
   var siteUrl = $(".sites option:selected").attr("data-url");
